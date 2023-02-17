@@ -1,24 +1,30 @@
-#include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 /**
- * main - Entry point
- * Return: Always return 0 (Success)
-*/
+ * main - prints all possible different combinations of two digits
+ * Return: 0 (Success)
+ */
 int main(void)
 {
-	int n;
+	int ones = '0';
+	int tens = '0';
 
-	int m;
+	for (tens = '0'; tens <= '9'; tens++)
+	{
+		for (ones = '0'; ones <= '9'; ones++)
+		{
+			if (!((ones == tens) || (tens > ones)))
+			{
+				putchar(tens);
+				putchar(ones);
+				if (!(ones == '9' && tens == '8'))
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+		}
+	}
 
-	srand(time(0));
-	n = rand() - RAND_MAX / 2;
-	m = n % 10;
-	if (m > 5)
-		printf("Last digit of %d is %d and is greater than 5\n", n, m);
-	if (m == 0)
-		printf("Last digit of %d is %d and is 0\n", n, m);
-	if (m < 6 && m != 0)
-		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, m);
+	putchar('\n');
 	return (0);
 }
